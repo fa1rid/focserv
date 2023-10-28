@@ -55,3 +55,4 @@ jobs:
           gh release create "$package_name $version" artifacts/*.deb -t "ReleaseTitle: $package_name $version" -n "Released on $date"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
