@@ -1,0 +1,2 @@
+debian/conf/* etc/ocserv/
+debian/service/* lib/systemd/system/

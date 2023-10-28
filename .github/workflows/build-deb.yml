@@ -1,0 +1,44 @@
+name: Build and Release Debian Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make build-deb.sh executable
+        run: chmod +x ./build-deb.sh
+
+      - name: Build and Release Debian Package
+        run: ./build-deb.sh
+
+      - name: Upload deb
+        uses: actions/upload-artifact@v3
+        with:
+          name: deb
+          path: ./src/ocserv_1.2.3-1_amd64.deb
+  release:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download deb
+        uses: actions/download-artifact@v3
+        with:
+          name: deb
+
+      - name: Release
+        run: |
+          gh release create "myRelease" \
+          "ocserv_1.2.3-1_amd64.deb" \
+          -n "ReleaseName" \
+          -t "ReleaseTitle"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          

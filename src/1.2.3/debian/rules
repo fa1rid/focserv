@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/architecture.mk
+
+# export DEB_BUILD_MAINT_OPTIONS = hardening=-all
+export DEB_BUILD_OPTIONS=nocheck terse noddebs
+# Used by autogen to substitute the source package date into man pages
+export MAN_PAGE_DATE = $(shell date -u -d "@$(SOURCE_DATE_EPOCH)" +%Y-%m-%d)
+
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- --disable-rpath \
+	    --enable-latency-stats --enable-systemd \
+		--without-protobuf --with-local-talloc --without-http-parser --without-pcl-lib
+#  --with-seccomp-trap
+# override_dh_auto_test:
+# 	# Most of them need root, actually test them in debci instead
+# 	-dh_auto_test

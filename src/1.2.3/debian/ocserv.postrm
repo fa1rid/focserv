@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    remove|purge)
+        # remove chroot/socket directory upon removal
+        rm -rf /var/lib/ocserv/run
+        ;;
+    *)
+        ;;
+esac
+
+#DEBHELPER#
+

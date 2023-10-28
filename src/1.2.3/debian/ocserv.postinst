@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+# add ocserv user/group if needed.
+if ! getent group ocserv >/dev/null; then
+    addgroup --system ocserv
+fi
+if ! getent passwd ocserv >/dev/null; then
+    adduser --system --ingroup ocserv \
+            --home /run/ocserv --no-create-home \
+            ocserv
+fi
+
+# create chroot/socket directory if needed.
+mkdir -p /var/lib/ocserv/run
+
+#DEBHELPER#
+

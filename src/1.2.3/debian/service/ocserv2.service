@@ -1,0 +1,14 @@
+[Unit]
+Description=ocserv2
+Documentation=man:ocserv(8)
+After=network-online.target
+After=dbus.service
+
+[Service]
+PrivateTmp=true
+PIDFile=/run/ocserv2.pid
+ExecStart=/usr/sbin/ocserv --foreground --pid-file /run/ocserv2.pid --config /etc/ocserv/ocserv2.conf
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
