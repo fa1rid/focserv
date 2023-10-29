@@ -1,6 +1,7 @@
 name: Build and Release Debian Package
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
