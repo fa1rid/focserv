@@ -51,8 +51,9 @@ jobs:
           filename=$(basename "$file_path")
           package_name=$(echo "$filename" | cut -d_ -f1)
           version=$(echo "$filename" | cut -d_ -f2)
+          tag_name="v$version"
           date=$(date "+%Y-%m-%d %H:%M:%S")
-          gh release create "$package_name $version" artifacts/*.deb -t "ReleaseTitle: $package_name $version" -n "Released on $date"
+          gh release create "$tag_name" artifacts/*.deb -t "ReleaseTitle: $package_name $version" -n "Released on $date"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
