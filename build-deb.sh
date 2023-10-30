@@ -7,7 +7,7 @@ sudo apt-get install -y git build-essential wget xz-utils
 # Clone the ocserv source code from your repository
 cd src/1.2.3/ || exit
 git clone https://gitlab.com/openconnect/ocserv.git
-sudo apt-get build-dep ./
+sudo apt-get build-dep -y ./
 mv ocserv/* .
 dpkg-buildpackage -b -uc -us
 ls -lh
