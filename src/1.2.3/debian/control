@@ -24,6 +24,7 @@ Build-Depends: autogen (>= 5.18.6),
                libuid-wrapper,
                nettle-dev,
                pkg-config,
+               protobuf-c-compiler,
                ronn,
                yajl-tools
 Standards-Version: 4.6.1
