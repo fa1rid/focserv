@@ -4,7 +4,9 @@ Priority: optional
 Maintainer: F <>
 Build-Depends: autogen (>= 5.18.6),
                debhelper-compat (= 13),
-               gss-ntlmssp,
+               gawk,
+               gnutls-bin,
+               gperf,
                libcjose-dev,
                libcurl4-gnutls-dev,
                libev-dev,
