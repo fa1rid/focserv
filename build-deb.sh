@@ -2,20 +2,12 @@
 # Set up the necessary environment
 # sudo apt-get update && sudo apt-get upgrade -y
 
-sudo apt-get install -y git build-essential libwrap0-dev libgnutls28-dev libev-dev libpam0g-dev liblz4-dev libseccomp-dev \
-	libreadline-dev libnl-route-3-dev libkrb5-dev libradcli-dev \
-	libcurl4-gnutls-dev libcjose-dev libjansson-dev libprotobuf-c-dev \
-	libtalloc-dev libhttp-parser-dev protobuf-c-compiler gperf \
-	iperf3 libuid-wrapper libpam-wrapper libnss-wrapper \
-	libsocket-wrapper gss-ntlmssp \
-	liboath-dev libmaxminddb-dev \
-	gawk gnutls-bin haproxy iproute2 iputils-ping yajl-tools \
-	autogen debhelper ronn freeradius tcpdump wget xz-utils \
-	libsystemd-dev
+sudo apt-get install -y git build-essential wget xz-utils
 
 # Clone the ocserv source code from your repository
 cd src/1.2.3/ || exit
 git clone https://gitlab.com/openconnect/ocserv.git
+sudo apt-get build-dep ./
 mv ocserv/* .
 dpkg-buildpackage -b -uc -us
 ls -lh
