@@ -2,9 +2,9 @@ name: Build and Release Debian Package
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
           version=$(echo "$filename" | cut -d_ -f2)
           tag_name="v$version"
           date=$(date "+%Y-%m-%d %H:%M:%S")
-          gh release create "$tag_name" artifacts/*.deb -t "ReleaseTitle: $package_name $version" -n "Released on $date"
+          gh release create "$tag_name" artifacts/*.deb -t "$package_name $version" -n "Released on $date"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}

@@ -14,7 +14,7 @@ sudo apt-get install -y git build-essential libwrap0-dev libgnutls28-dev libev-d
 	libsystemd-dev
 
 # Clone the ocserv source code from your repository
-cd src/1.2.3/
+cd src/1.2.3/ || exit
 git clone https://gitlab.com/openconnect/ocserv.git
 mv ocserv/* .
 dpkg-buildpackage -b -uc -us
